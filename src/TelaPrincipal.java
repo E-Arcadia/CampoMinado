@@ -42,9 +42,7 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 		botoesArray = new JButton[tamanho][tamanho];
 		for (int linha = 0; linha < tamanho; linha++) {
 			for (int coluna = 0; coluna < tamanho; coluna++) {
-				botoesArray[linha][coluna] = new JButton(linha + "," + coluna);
-				botoesArray[linha][coluna].setActionCommand(linha + "," + coluna);
-				botoesArray[linha][coluna].setToolTipText(linha + "," + coluna);
+				//TODO Cria Posicao;
 				botoesArray[linha][coluna].addActionListener(this);
 				painel.add(botoesArray[linha][coluna]);
 			}
@@ -60,7 +58,7 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 		int colunaOriginal = Integer.parseInt(posicao[1]);
 
 		// -L-C | -L | -L+C
-		// -C | O | +C
+		//   -C |  O |   +C
 		// +L-C | +L | +L+C
 
 		(botoesArray[linhaOriginal - 1][colunaOriginal - 1]).setBackground(Color.green);
@@ -73,7 +71,7 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 		(botoesArray[linhaOriginal + 1][colunaOriginal + 1]).setBackground(Color.green);
 
 		JButton botaoClicado = (JButton) e.getSource();
-		botaoClicado.setBackground(Color.YELLOW);
+//		botaoClicado.setBackground(Color.YELLOW);
 	}
 
 	private void implantaMinas(int tamanhoMatriz) {
@@ -86,19 +84,7 @@ public class TelaPrincipal extends JFrame implements ActionListener {
 			int coluna = gerador.nextInt(tamanhoMatriz);
 
 			if (!botoesArray[linha][coluna].getText().equals("B")) {
-				Image imagem, imagemMenor = null;
-				try {
-					imagem = ImageIO.read(getClass().getResource("imagens/bomba.jpg"));
-					imagemMenor = imagem.getScaledInstance(25, 20, Image.SCALE_SMOOTH);
-				} catch (IOException e) {
-					System.out.println("ERRO ao carregar icon!!!");
-				}
-				
-
-				botoesArray[linha][coluna].setText("B");
-				botoesArray[linha][coluna].setIcon(new ImageIcon(imagemMenor));
-				botoesArray[linha][coluna].setForeground(Color.BLUE);
-				botoesArray[linha][coluna].setBackground(Color.WHITE);
+				//Todo setBomba();
 				if (--quantidadeBombas == 0)
 					repete = false;
 			}
